@@ -1,0 +1,53 @@
+<!-- NOTICE:
+This website is intended for private use only and serves as a supplement.
+Commercial use is not intended. 
+-->
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALORANT Bingo</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self';">
+</head>
+<body>
+    <div class="background">
+        <div class="blur"></div>
+    </div>
+    
+    <div class="bingo-container">
+        <div class="header">
+            <h1 id="title">VALORANT Bingo v1.1</h1>
+            <p class="signature">CODED BY WOLFI</p>
+            <div class="buttons">
+                <button id="viewOptions">View Options</button>
+                <button id="generateNewCard">Generate New Card</button>
+                <div class="dropdown">
+                    <button id="languageButton">Language</button>
+                    <div id="languageMenu" class="dropdown-content">
+                        <a href="#" id="english">🇬🇧 English</a>
+                        <a href="#" id="german">🇩🇪 Deutsch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bingoCard" class="bingo-card">
+            <!-- Bingo fields will be inserted here by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Popup for viewing all options -->
+    <div id="popup" class="popup">
+        <span id="closePopup">&times;</span>
+        <div class="popup-content">
+            <h2 id="popupTitle">All Tasks</h2>
+            <ul id="allTasks">
+            </ul>
+        </div>
+    </div>    
+
+    <script src="script.js"></script>
+</body>
+</html>

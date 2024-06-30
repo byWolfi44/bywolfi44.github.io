@@ -1,0 +1,292 @@
+@font-face {
+    font-family: oswald_regularregular;
+    src: url('./oswald-regular.woff') format("woff");
+    font-weight: 400;
+    font-style:normal
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity:0
+    }
+
+    to {
+        opacity:1
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform:translateY(10%)
+    }
+
+    to {
+        opacity: 1;
+        transform:translateY(0)
+    }
+}
+
+@keyframes highlightBorder {
+    0% {
+        border-color:#ffffffbf
+    }
+
+    to {
+        border-color:#fff0
+    }
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: black;
+    background-image: url('./background0.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.331);
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+}
+
+body {
+    animation: fadeUp 1s;
+    font-family: oswald_regularregular, sans-serif;
+    text-shadow: .0625rem .0625rem .125rem rgba(0, 0, 0, .5);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent body scrolling when the popup is open */
+    transition: filter 0.3s;
+}
+
+.bingo-container {
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #d0d0d0;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.header .signature {
+    font-size: 12px;
+    color: #d0d0d0;
+    margin-top: 60px; /* Optional: adjust to reduce space between h1 and signature */
+    margin-left: -728px;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    background-color: rgba(31, 44, 61, 0.5);
+    color: #d0d0d0;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3c4a5b;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+}
+
+.bingo-card {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.bingo-field, .freebie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    user-select: none;
+    background-color: rgba(31, 44, 61, 0.5);
+    text-align: center;
+    font-size: 14px;
+    color: inherit;
+    box-shadow: 5px 5px 5px #00000048;
+}
+
+.bingo-field:hover {
+    background-color: rgba(63, 199, 149);
+    animation: highlightBorder .25s ease-in;
+    animation-fill-mode: forwards;
+    border: .125rem solid #47ffbf;
+    padding: .5rem;
+}
+
+.freebie {
+    background-color: rgba(63, 199, 149, 0.5);
+    border-color: rgb(41, 134, 100);
+    border: .125rem solid #47ffbf;
+    padding: .5rem;
+}
+
+/* Make the popup full screen with blurred background */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    backdrop-filter: blur(10px); /* Blur effect */
+    z-index: 1000;
+    color: #d0d0d0;
+    overflow: hidden; /* Prevent scrolling of the entire popup */
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn .5s;
+}
+
+/* Centered container for the content */
+.popup-content {
+    width: 800px;
+    max-width: 100%;
+    background-color: #1f2c3d;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #3c4a5b;
+    position: relative;
+    overflow-y: auto;
+    max-height: 80%;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: fadeIn .5s;
+}
+
+#closePopup {
+    font-size: 100px;
+    position: absolute;
+    top: -25px;
+    right: 50px;
+    cursor: pointer;
+    color: #d0d0d0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1f2c3d;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #d0d0d0;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #3c4a5b;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #6d6c6c;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip text */
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Custom scrollbar */
+.popup-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background-color: #3c4a5b;
+    border-radius: 10px;
+}
+
+.popup-content::-webkit-scrollbar-track {
+    background-color: #1f2c3d;
+}
